@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projeto escolar: Carregador por Indução — tecnologia de carregamento sem fios.">
+  <title>Carregador por Indução | Projeto</title>
+  <style>
+    :root {
+      --navy: #071b3a;
+      --blue: #1261c9;
+      --cyan: #48c6e8;
+      --pale: #eaf4ff;
+      --ink: #172b4d;
+      --muted: #61728d;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #e8f2ff;
+      background: #071b3a;
+      line-height: 1.65;
+    }
+    .topbar {
+      background: rgba(7, 27, 58, .96);
+      color: white;
+      padding: 15px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand { font-weight: 800; letter-spacing: .5px; }
+    .brand span { color: var(--cyan); }
+    nav { display: flex; gap: 22px; flex-wrap: wrap; }
+    nav a { color: #dceaff; text-decoration: none; font-size: .9rem; }
+    nav a:hover { color: var(--cyan); }
+    .hero {
+      min-height: 510px;
+      padding: 76px 7% 70px;
+      color: white;
+      background:
+        radial-gradient(circle at 80% 40%, rgba(72,198,232,.25), transparent 27%),
+        radial-gradient(circle at 70% 90%, rgba(18,97,201,.5), transparent 35%),
+        linear-gradient(120deg, #071b3a 0%, #0b3976 58%, #1261c9 100%);
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 40px;
+    }
+    .eyebrow {
+      color: #8de5f6;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-size: .78rem;
+      font-weight: 700;
+    }
+    h1 { font-size: clamp(2.7rem, 6vw, 5rem); line-height: 1.04; margin: 15px 0 22px; }
+    .hero p { max-width: 620px; color: #e0edff; font-size: 1.1rem; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+    .btn {
+      display: inline-block; padding: 12px 21px; border-radius: 30px;
+      background: var(--cyan); color: #06234b; text-decoration: none; font-weight: 800;
+    }
+    .btn.secondary { background: transparent; color: white; border: 1px solid #9fc7f7; }
+    .charger-art {
+      width: min(100%, 340px); aspect-ratio: 1; margin: auto; position: relative;
+      display: grid; place-items: center;
+    }
+    .halo {
+      position: absolute; border: 1px solid rgba(142,226,255,.5); border-radius: 50%;
+      width: 92%; height: 92%; box-shadow: 0 0 45px rgba(72,198,232,.12), inset 0 0 45px rgba(72,198,232,.08);
+    }
+    .halo.two { width: 72%; height: 72%; border-style: dashed; animation: rotate 22s linear infinite; }
+    .pad {
+      width: 58%; aspect-ratio: 1; border-radius: 28%; transform: rotate(-12deg);
+      background: linear-gradient(145deg, #e8f6ff, #8abde9 48%, #347bc8);
+      box-shadow: 18px 25px 45px rgba(0,0,0,.35), inset 5px 5px 14px rgba(255,255,255,.85);
+      display: grid; place-items: center; position: relative;
+    }
+    .pad:before { content: ""; width: 65%; height: 65%; border: 5px solid rgba(13,75,145,.55); border-radius: 50%; }
+    .phone {
+      position: absolute; width: 31%; height: 53%; border: 5px solid #d9edff;
+      border-radius: 22px; background: linear-gradient(160deg,#153c70,#071b3a);
+      right: 5%; top: 4%; transform: rotate(12deg); box-shadow: 10px 15px 28px rgba(0,0,0,.3);
+    }
+    .phone:before { content: ""; position: absolute; width: 22%; height: 5px; border-radius: 8px; background: #9bc8ee; top: 8px; left: 39%; }
+    .phone:after { content: "ϟ"; color: #69dafa; font-size: 2.2rem; position: absolute; inset: 0; display: grid; place-items: center; }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    main { max-width: 1120px; margin: auto; padding: 65px 24px; }
+    section { margin-bottom: 65px; scroll-margin-top: 30px; }
+    .section-tag { color: #75dff2; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; font-size: .75rem; }
+    h2 { color: #f0f7ff; font-size: clamp(1.8rem, 3vw, 2.55rem); line-height: 1.15; margin: 9px 0 16px; }
+    .intro { max-width: 760px; color: #bfd2ec; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 27px; }
+    .card {
+      background: #0d2b55; border: 1px solid #24558c; border-radius: 18px; padding: 24px;
+      box-shadow: 0 12px 30px rgba(19,65,120,.06);
+    }
+    .icon {
+      width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center;
+      background: #173f70; color: #75dff2; font-size: 1.45rem; margin-bottom: 15px;
+    }
+    .card h3 { margin: 0 0 8px; color: #f0f7ff; }
+    .card p { margin: 0; color: #bfd2ec; font-size: .95rem; }
+    .how {
+      display: grid; grid-template-columns: .9fr 1.1fr; gap: 35px; align-items: center;
+      background: #0d2b55; border: 1px solid #24558c; border-radius: 24px; padding: 35px;
+    }
+    .steps { display: grid; gap: 16px; }
+    .step { display: flex; gap: 15px; align-items: flex-start; }
+    .number {
+      flex: 0 0 34px; height: 34px; border-radius: 50%; background: var(--blue);
+      color: white; display: grid; place-items: center; font-weight: 800;
+    }
+    .step strong { color: #f0f7ff; display: block; margin-bottom: 3px; }
+    .step p { margin: 0; color: #bfd2ec; font-size: .94rem; }
+    .diagram {
+      min-height: 260px; border-radius: 18px; background: linear-gradient(140deg,#0a2b5a,#1261c9);
+      color: white; display: grid; place-items: center; padding: 25px; text-align: center;
+    }
+    .coil { width: 150px; height: 150px; border: 7px solid #78dff4; border-radius: 50%; position: relative; margin: 0 auto 15px; box-shadow: 0 0 0 12px rgba(120,223,244,.12), 0 0 0 25px rgba(120,223,244,.07); }
+    .coil:after { content: ""; position: absolute; inset: 20px; border: 4px dashed #d8f8ff; border-radius: 50%; }
+    .note { border-left: 4px solid var(--cyan); background: #0d2b55; padding: 17px 20px; border-radius: 0 12px 12px 0; color: #bfd2ec; margin-top: 22px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    ul.clean { padding-left: 20px; color: #bfd2ec; }
+    ul.clean li { margin: 8px 0; }
+    .project-footer {
+      background: var(--navy); color: #dceaff; text-align: center; padding: 35px 20px;
+    }
+    .project-footer strong { color: #75dff2; }
+    @media (max-width: 760px) {
+      .topbar { align-items: flex-start; flex-direction: column; }
+      nav { gap: 12px; }
+      .hero { grid-template-columns: 1fr; padding-top: 55px; text-align: center; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .charger-art { max-width: 270px; }
+      .cards, .two-col, .how { grid-template-columns: 1fr; }
+      main { padding: 48px 18px; }
+      .how { padding: 23px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">PROJETO <span>•</span> TECNOLOGIA</div>
+    <nav aria-label="Navegação principal">
+      <a href="#sobre">O projeto</a>
+      <a href="#funcionamento">Funcionamento</a>
+      <a href="#componentes">Componentes</a>
+      <a href="#vantagens">Vantagens</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Inovação • Energia • Tecnologia</div>
+      <h1>Carregador<br>por Indução</h1>
+      <p>Uma forma prática de transferir energia sem ligar diretamente o telemóvel ao carregador, através do princípio da indução eletromagnética.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#sobre">Conhecer o projeto</a>
+        <a class="btn secondary" href="#funcionamento">Como funciona</a>
+      </div>
+    </div>
+    <div class="charger-art" aria-label="Ilustração de um telemóvel a carregar sem fios">
+      <div class="halo"></div><div class="halo two"></div>
+      <div class="pad"></div><div class="phone"></div>
+    </div>
+  </section>
+
+  <main>
+    <section id="sobre">
+      <div class="section-tag">01 / Enquadramento</div>
+      <h2>O que é um carregador por indução?</h2>
+      <p class="intro">É um dispositivo que permite carregar equipamentos compatíveis sem utilizar um cabo ligado diretamente ao aparelho. A energia é transferida entre duas bobinas através de um campo eletromagnético.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="icon">ϟ</div>
+          <h3>Energia sem fios</h3>
+          <p>A transferência de energia acontece quando o dispositivo é colocado na zona de carregamento.</p>
+        </article>
+        <article class="card">
+          <div class="icon">◎</div>
+          <h3>Indução eletromagnética</h3>
+          <p>Uma bobina cria um campo magnético variável que permite induzir corrente noutra bobina.</p>
+        </article>
+        <article class="card">
+          <div class="icon">▣</div>
+          <h3>Compatibilidade</h3>
+          <p>O equipamento tem de ser compatível com carregamento sem fios ou utilizar um recetor adequado.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="funcionamento">
+      <div class="section-tag">02 / Princípio de funcionamento</div>
+      <h2>Como funciona?</h2>
+      <div class="how">
+        <div class="steps">
+          <div class="step"><div class="number">1</div><div><strong>Ligação à energia</strong><p>A base recebe energia elétrica através de uma fonte de alimentação.</p></div></div>
+          <div class="step"><div class="number">2</div><div><strong>Criação do campo magnético</strong><p>A corrente elétrica na bobina transmissora cria um campo magnético variável.</p></div></div>
+          <div class="step"><div class="number">3</div><div><strong>Transferência de energia</strong><p>A bobina recetora do dispositivo recebe a energia por indução eletromagnética.</p></div></div>
+          <div class="step"><div class="number">4</div><div><strong>Carregamento da bateria</strong><p>O circuito do dispositivo converte e gere a energia para carregar a bateria.</p></div></div>
+        </div>
+        <div class="diagram">
+          <div>
+            <div class="coil"></div>
+            <strong>Campo eletromagnético</strong>
+            <p style="color:#dceaff;margin:7px 0 0">A energia passa da bobina transmissora para a bobina recetora.</p>
+          </div>
+        </div>
+      </div>
+      <div class="note"><strong>Nota:</strong> A eficiência do carregamento depende do alinhamento entre as bobinas, da distância, da potência e das características dos equipamentos.</div>
+    </section>
+
+    <section id="componentes">
+      <div class="section-tag">03 / Constituição</div>
+      <h2>Principais componentes</h2>
+      <div class="cards">
+        <article class="card"><div class="icon">◉</div><h3>Bobina transmissora</h3><p>Produz o campo magnético variável responsável pela transferência de energia.</p></article>
+        <article class="card"><div class="icon">⌁</div><h3>Circuito eletrónico</h3><p>Controla a alimentação e o funcionamento do sistema de carregamento.</p></article>
+        <article class="card"><div class="icon">▤</div><h3>Bobina recetora</h3><p>Recebe a energia induzida e encaminha-a para o circuito de carregamento do aparelho.</p></article>
+      </div>
+    </section>
+
+    <section id="vantagens">
+      <div class="section-tag">04 / Avaliação</div>
+      <h2>Vantagens e limitações</h2>
+      <div class="two-col">
+        <article class="card">
+          <div class="icon">✓</div><h3>Vantagens</h3>
+          <ul class="clean">
+            <li>Reduz a necessidade de ligar e desligar cabos.</li>
+            <li>É simples de utilizar no dia a dia.</li>
+            <li>Evita o desgaste frequente da entrada de carregamento.</li>
+            <li>Permite criar bases de carregamento com diferentes formatos.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="icon">↗</div><h3>Limitações</h3>
+          <ul class="clean">
+            <li>Exige um dispositivo compatível.</li>
+            <li>O posicionamento correto é importante.</li>
+            <li>Pode ser menos eficiente do que alguns carregadores com cabo.</li>
+            <li>Durante o processo pode ocorrer aquecimento.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-tag">05 / Conclusão</div>
+      <h2>Uma tecnologia para o futuro</h2>
+      <p class="intro">O carregamento por indução demonstra como os princípios da Física podem ser aplicados em soluções tecnológicas do quotidiano. Apesar de apresentar algumas limitações, oferece comodidade e continua a evoluir em eficiência, segurança e compatibilidade.</p>
+    </section>
+  </main>
+
+  <footer class="project-footer">
+    <strong>CARREGADOR POR INDUÇÃO</strong>
+    <div>Projeto escolar • Tecnologia e inovação</div>
+  </footer>
+</body>
+</html>
