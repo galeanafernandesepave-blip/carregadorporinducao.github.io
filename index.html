@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Carregador por Indução | Projeto PAP</title>
 
 <style>
@@ -15,129 +16,237 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #06172f;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #06152e;
     color: #ffffff;
-    line-height: 1.7;
 }
 
-/* MENU */
+/* MENU DE NAVEGAÇÃO */
+
 header {
-    background: #041126;
-    padding: 20px;
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid #245184;
+    background: #030e20;
+    padding: 20px 5%;
+    border-bottom: 1px solid #174a7e;
 }
 
 nav {
     display: flex;
     justify-content: center;
-    gap: 30px;
     flex-wrap: wrap;
+    gap: 35px;
 }
 
 nav a {
-    color: #ffffff;
+    color: #d8eaff;
     text-decoration: none;
+    font-size: 14px;
     font-weight: bold;
+    transition: .3s;
 }
 
 nav a:hover {
-    color: #55d7f2;
+    color: #42c9f5;
 }
 
-/* CAPA */
+/* CAPA PRINCIPAL */
+
 .capa {
-    min-height: 85vh;
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(135deg, #06172f, #104b91);
-    padding: 40px;
+    padding: 40px 20px;
+    background:
+    radial-gradient(circle at 80% 20%, #15508c 0%, transparent 35%),
+    linear-gradient(135deg, #06152e, #0b3970);
+}
+
+.capa .subtitulo {
+    color: #50d5f5;
+    letter-spacing: 5px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .capa h1 {
-    font-size: 55px;
-    color: #55d7f2;
+    font-size: clamp(40px, 7vw, 75px);
+    margin: 25px 0;
+    line-height: 1.1;
+    color: #ffffff;
+}
+
+.capa h1 span {
+    color: #50d5f5;
 }
 
 .capa p {
-    font-size: 20px;
-    margin-top: 15px;
+    color: #c6ddf5;
+    font-size: 18px;
+}
+
+.botao {
+    margin-top: 35px;
+    padding: 14px 30px;
+    background: #50d5f5;
+    color: #06152e;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
 }
 
 /* SECÇÕES */
+
 section {
     min-height: 80vh;
-    padding: 100px 10%;
-    border-bottom: 1px solid #245184;
+    padding: 110px 10%;
+    border-bottom: 1px solid #174a7e;
+    scroll-margin-top: 75px;
 }
 
-h2 {
-    font-size: 38px;
-    color: #55d7f2;
-    margin-bottom: 25px;
-}
-
-h3 {
-    color: #55d7f2;
-    margin-bottom: 12px;
-}
-
-p {
-    color: #d0e1f5;
-    font-size: 17px;
+.numero {
+    color: #50d5f5;
+    letter-spacing: 4px;
+    font-size: 13px;
+    font-weight: bold;
     margin-bottom: 15px;
 }
 
+h2 {
+    font-size: clamp(30px, 4vw, 45px);
+    margin-bottom: 25px;
+    color: #50d5f5;
+}
+
+.descricao {
+    color: #c6ddf5;
+    font-size: 18px;
+    line-height: 1.9;
+    max-width: 900px;
+}
+
+/* CARTÕES */
+
 .cartoes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 25px;
-    margin-top: 35px;
+    margin-top: 45px;
 }
 
 .cartao {
     background: #0b2850;
-    border: 1px solid #245184;
+    border: 1px solid #174a7e;
+    padding: 30px;
     border-radius: 15px;
-    padding: 25px;
-}
-
-.cartao:hover {
-    border-color: #55d7f2;
-    transform: translateY(-5px);
     transition: .3s;
 }
 
-.numero {
-    color: #55d7f2;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
+.cartao:hover {
+    transform: translateY(-7px);
+    border-color: #50d5f5;
 }
+
+.cartao .icone {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.cartao h3 {
+    color: #50d5f5;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.cartao p {
+    color: #c6ddf5;
+    line-height: 1.7;
+}
+
+/* CONSTRUÇÃO */
+
+.etapas {
+    margin-top: 40px;
+    display: grid;
+    gap: 20px;
+}
+
+.etapa {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 25px;
+    background: #0b2850;
+    border: 1px solid #174a7e;
+    border-radius: 15px;
+}
+
+.etapa .numero-etapa {
+    background: #50d5f5;
+    color: #06152e;
+    min-width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.etapa h3 {
+    color: #50d5f5;
+    margin-bottom: 8px;
+}
+
+.etapa p {
+    color: #c6ddf5;
+    line-height: 1.7;
+}
+
+/* NOTA */
+
+.nota {
+    margin-top: 35px;
+    padding: 25px;
+    background: #0d315b;
+    border-left: 4px solid #50d5f5;
+    border-radius: 8px;
+    color: #d8eaff;
+}
+
+/* RODAPÉ */
 
 footer {
-    background: #041126;
+    background: #030e20;
+    padding: 45px 20px;
     text-align: center;
-    padding: 35px;
-    color: #55d7f2;
 }
 
-@media(max-width: 600px) {
-    .capa h1 {
-        font-size: 38px;
+footer h3 {
+    color: #50d5f5;
+    letter-spacing: 3px;
+}
+
+footer p {
+    color: #a9c3e0;
+    margin-top: 10px;
+}
+
+/* TELEMÓVEIS */
+
+@media(max-width: 650px) {
+    nav {
+        gap: 15px;
     }
 
     section {
-        padding: 65px 7%;
+        padding: 75px 7%;
     }
 
-    nav {
+    .etapa {
         gap: 15px;
     }
 }
@@ -146,217 +255,311 @@ footer {
 
 <body>
 
+<!-- MENU -->
+
 <header>
 <nav>
-    <a href="#introducao">Introdução</a>
-    <a href="#utilidade">Para que serve</a>
-    <a href="#materiais">Materiais</a>
-    <a href="#construcao">Construção</a>
+    <a href="#inicio">INÍCIO</a>
+    <a href="#introducao">INTRODUÇÃO</a>
+    <a href="#utilidade">UTILIDADE</a>
+    <a href="#materiais">MATERIAIS</a>
+    <a href="#construcao">CONSTRUÇÃO</a>
 </nav>
 </header>
 
 <!-- CAPA -->
-<div class="capa">
-    <p>PROJETO DE APTIDÃO PROFISSIONAL</p>
-    <h1>CARREGADOR<br>POR INDUÇÃO</h1>
-    <p>Tecnologia • Inovação • Energia sem fios</p>
+
+<div class="capa" id="inicio">
+
+    <div class="subtitulo">
+        PROJETO DE APTIDÃO PROFISSIONAL
+    </div>
+
+    <h1>
+        CARREGADOR<br>
+        <span>POR INDUÇÃO</span>
+    </h1>
+
+    <p>
+        Tecnologia, inovação e carregamento sem fios.
+    </p>
+
+    <a href="#introducao" class="botao">
+        CONHECER O PROJETO ↓
+    </a>
+
 </div>
 
-<!-- 1. INTRODUÇÃO -->
+<!-- INTRODUÇÃO -->
+
 <section id="introducao">
 
-<div class="numero">01 — APRESENTAÇÃO</div>
-<h2>Introdução</h2>
+    <div class="numero">01 — APRESENTAÇÃO</div>
 
-<p>
-O carregador por indução é uma tecnologia que permite
-transferir energia elétrica sem a necessidade de ligar
-diretamente um cabo ao equipamento.
-</p>
+    <h2>Introdução</h2>
 
-<p>
-Este projeto tem como objetivo compreender o funcionamento
-desta tecnologia, conhecer os materiais necessários e
-apresentar as diferentes etapas da sua construção.
-</p>
+    <p class="descricao">
+        O carregador por indução é um dispositivo tecnológico
+        que permite carregar equipamentos eletrónicos sem
+        necessidade de utilizar um cabo ligado diretamente
+        ao aparelho.
 
-<div class="cartoes">
+        <br><br>
 
-<div class="cartao">
-<h3>O que é?</h3>
-<p>
-É um dispositivo que utiliza a indução eletromagnética
-para transmitir energia entre duas bobinas.
-</p>
-</div>
+        Esta tecnologia funciona através do princípio da
+        indução eletromagnética, permitindo a transferência
+        de energia entre duas bobinas.
 
-<div class="cartao">
-<h3>Objetivo</h3>
-<p>
-Desenvolver uma base de carregamento sem fios e
-compreender os princípios físicos envolvidos.
-</p>
-</div>
+        <br><br>
 
-</div>
+        Neste projeto pretende-se conhecer o funcionamento
+        do carregador, identificar os materiais necessários
+        e apresentar as diferentes etapas da sua construção.
+    </p>
+
+    <div class="cartoes">
+
+        <div class="cartao">
+            <div class="icone">⚡</div>
+            <h3>O que é?</h3>
+            <p>
+                É um sistema de carregamento sem fios que
+                utiliza um campo eletromagnético para
+                transferir energia.
+            </p>
+        </div>
+
+        <div class="cartao">
+            <div class="icone">🎯</div>
+            <h3>Objetivo</h3>
+            <p>
+                Desenvolver uma base de carregamento e
+                compreender os princípios tecnológicos
+                associados ao seu funcionamento.
+            </p>
+        </div>
+
+    </div>
+
 </section>
 
-<!-- 2. UTILIDADE -->
+<!-- UTILIDADE -->
+
 <section id="utilidade">
 
-<div class="numero">02 — UTILIDADE</div>
-<h2>Para que serve este objeto?</h2>
+    <div class="numero">02 — FINALIDADE</div>
 
-<p>
-O carregador por indução serve para carregar telemóveis
-e outros equipamentos eletrónicos compatíveis sem
-necessidade de utilizar um cabo diretamente ligado
-ao aparelho.
-</p>
+    <h2>Para que serve este objeto?</h2>
 
-<div class="cartoes">
+    <p class="descricao">
+        O carregador por indução serve para fornecer energia
+        à bateria de telemóveis e de outros dispositivos
+        eletrónicos compatíveis, sem necessidade de ligar
+        um cabo diretamente ao equipamento.
+    </p>
 
-<div class="cartao">
-<h3>Comodidade</h3>
-<p>
-Permite carregar um dispositivo colocando-o simplesmente
-sobre uma base de carregamento.
-</p>
-</div>
+    <div class="cartoes">
 
-<div class="cartao">
-<h3>Praticidade</h3>
-<p>
-Reduz a necessidade de ligar e desligar constantemente
-cabos de carregamento.
-</p>
-</div>
+        <div class="cartao">
+            <div class="icone">📱</div>
+            <h3>Carregar dispositivos</h3>
+            <p>
+                Permite carregar telemóveis e outros aparelhos
+                compatíveis com esta tecnologia.
+            </p>
+        </div>
 
-<div class="cartao">
-<h3>Tecnologia</h3>
-<p>
-Utiliza o princípio da indução eletromagnética para
-transferir energia.
-</p>
-</div>
+        <div class="cartao">
+            <div class="icone">🔋</div>
+            <h3>Praticidade</h3>
+            <p>
+                Facilita o carregamento através de uma base
+                onde o equipamento é colocado.
+            </p>
+        </div>
 
-</div>
+        <div class="cartao">
+            <div class="icone">🌐</div>
+            <h3>Inovação</h3>
+            <p>
+                Representa uma evolução nas soluções
+                tecnológicas de carregamento.
+            </p>
+        </div>
+
+    </div>
+
 </section>
 
-<!-- 3. MATERIAIS -->
+<!-- MATERIAIS -->
+
 <section id="materiais">
 
-<div class="numero">03 — PREPARAÇÃO</div>
-<h2>Materiais necessários</h2>
+    <div class="numero">03 — PREPARAÇÃO</div>
 
-<p>
-Para realizar este projeto serão necessários os seguintes
-materiais e componentes:
-</p>
+    <h2>Materiais necessários</h2>
 
-<div class="cartoes">
+    <p class="descricao">
+        Para a realização deste projeto serão necessários
+        vários componentes eletrónicos e materiais de
+        suporte que permitem construir e organizar
+        o carregador por indução.
+    </p>
 
-<div class="cartao">
-<h3>01. Módulo transmissor</h3>
-<p>Produz o campo eletromagnético necessário para a transferência de energia.</p>
-</div>
+    <div class="cartoes">
 
-<div class="cartao">
-<h3>02. Bobina recetora</h3>
-<p>Recebe a energia através da indução eletromagnética.</p>
-</div>
+        <div class="cartao">
+            <div class="icone">◎</div>
+            <h3>Módulo transmissor</h3>
+            <p>
+                Responsável pela criação do campo
+                eletromagnético.
+            </p>
+        </div>
 
-<div class="cartao">
-<h3>03. Fonte USB</h3>
-<p>Fornece energia de baixa tensão compatível com o módulo.</p>
-</div>
+        <div class="cartao">
+            <div class="icone">◉</div>
+            <h3>Bobina recetora</h3>
+            <p>
+                Recebe a energia transmitida por indução.
+            </p>
+        </div>
 
-<div class="cartao">
-<h3>04. Base de suporte</h3>
-<p>Serve de estrutura para colocar os componentes.</p>
-</div>
+        <div class="cartao">
+            <div class="icone">⚡</div>
+            <h3>Fonte USB</h3>
+            <p>
+                Fornece a alimentação de baixa tensão
+                adequada ao módulo.
+            </p>
+        </div>
 
-<div class="cartao">
-<h3>05. Caixa de proteção</h3>
-<p>Ajuda a proteger e organizar os componentes.</p>
-</div>
+        <div class="cartao">
+            <div class="icone">▱</div>
+            <h3>Base de suporte</h3>
+            <p>
+                Serve de estrutura para colocar
+                o sistema de carregamento.
+            </p>
+        </div>
 
-<div class="cartao">
-<h3>06. Material de fixação</h3>
-<p>Permite manter os elementos estáveis na estrutura.</p>
-</div>
+        <div class="cartao">
+            <div class="icone">▦</div>
+            <h3>Caixa de proteção</h3>
+            <p>
+                Permite proteger e organizar
+                os componentes do projeto.
+            </p>
+        </div>
 
-</div>
+        <div class="cartao">
+            <div class="icone">⌁</div>
+            <h3>Material de fixação</h3>
+            <p>
+                Ajuda a manter os componentes
+                devidamente posicionados.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="nota">
+        <strong>Nota de segurança:</strong>
+        Os componentes devem ser compatíveis e utilizados
+        de acordo com as indicações do fabricante.
+        A montagem e os testes devem ter acompanhamento
+        do professor, sem ligações diretas à tomada elétrica.
+    </div>
 
 </section>
 
-<!-- 4. CONSTRUÇÃO -->
+<!-- CONSTRUÇÃO -->
+
 <section id="construcao">
 
-<div class="numero">04 — DESENVOLVIMENTO</div>
-<h2>A Construção</h2>
+    <div class="numero">04 — DESENVOLVIMENTO</div>
 
-<p>
-A construção do carregador por indução será organizada
-em diferentes etapas, desde a preparação dos materiais
-até à verificação do funcionamento.
-</p>
+    <h2>A Construção</h2>
 
-<div class="cartoes">
+    <p class="descricao">
+        A construção do carregador por indução será
+        realizada através de várias etapas, começando
+        pela preparação dos materiais e terminando
+        com a verificação do funcionamento do dispositivo.
+    </p>
 
-<div class="cartao">
-<h3>1. Preparação</h3>
-<p>
-Reunir os materiais e verificar a compatibilidade
-dos componentes.
-</p>
-</div>
+    <div class="etapas">
 
-<div class="cartao">
-<h3>2. Organização</h3>
-<p>
-Preparar a base e definir a posição dos módulos
-de carregamento.
-</p>
-</div>
+        <div class="etapa">
+            <div class="numero-etapa">1</div>
+            <div>
+                <h3>Preparação dos materiais</h3>
+                <p>
+                    Reunir todos os materiais necessários
+                    e verificar se os componentes são
+                    compatíveis entre si.
+                </p>
+            </div>
+        </div>
 
-<div class="cartao">
-<h3>3. Montagem</h3>
-<p>
-Colocar e fixar o módulo de carregamento seguindo
-as instruções do fabricante.
-</p>
-</div>
+        <div class="etapa">
+            <div class="numero-etapa">2</div>
+            <div>
+                <h3>Preparação da base</h3>
+                <p>
+                    Escolher e organizar a estrutura onde
+                    ficará instalado o sistema de carregamento.
+                </p>
+            </div>
+        </div>
 
-<div class="cartao">
-<h3>4. Verificação</h3>
-<p>
-Confirmar as ligações e utilizar apenas a alimentação
-de baixa tensão indicada pelo fabricante.
-</p>
-</div>
+        <div class="etapa">
+            <div class="numero-etapa">3</div>
+            <div>
+                <h3>Montagem dos componentes</h3>
+                <p>
+                    Posicionar e fixar o módulo transmissor
+                    seguindo as instruções do fabricante.
+                </p>
+            </div>
+        </div>
 
-<div class="cartao">
-<h3>5. Teste final</h3>
-<p>
-Verificar o carregamento com um equipamento compatível
-e observar se funciona corretamente.
-</p>
-</div>
+        <div class="etapa">
+            <div class="numero-etapa">4</div>
+            <div>
+                <h3>Verificação do sistema</h3>
+                <p>
+                    Confirmar a montagem e as condições
+                    de segurança antes de alimentar o módulo.
+                </p>
+            </div>
+        </div>
 
-</div>
+        <div class="etapa">
+            <div class="numero-etapa">5</div>
+            <div>
+                <h3>Teste final</h3>
+                <p>
+                    Testar o carregador com um equipamento
+                    compatível e verificar o seu funcionamento.
+                </p>
+            </div>
+        </div>
 
-<p style="margin-top:30px;">
-<strong>Segurança:</strong> a montagem e os testes devem ser
-realizados com acompanhamento do professor, utilizando
-módulos adequados e sem ligações diretas à tomada elétrica.
-</p>
+    </div>
 
 </section>
 
+<!-- RODAPÉ -->
+
 <footer>
-<h3>CARREGADOR POR INDUÇÃO</h3>
-<p>Projeto PAP • Tecnologia e Inovação</p>
+
+    <h3>CARREGADOR POR INDUÇÃO</h3>
+
+    <p>
+        Projeto PAP | Tecnologia e Inovação
+    </p>
+
 </footer>
 
 </body>
